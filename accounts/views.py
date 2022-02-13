@@ -33,7 +33,7 @@ def registration_view(request):
 
             account = serializer.save()
 
-            token = Token.objects.get(user=account).key
+            token = Token.objects.get(user=account)
             data = {
                 "user": {
                     "email": account.email,
@@ -41,7 +41,7 @@ def registration_view(request):
                 "response": "Account was successfuly created",
                 "status": f"{status.HTTP_201_CREATED} CREATED",
                 "Key": {
-                    "token": token,
+                    "token": token.key,
                 },
             }
             return Response(data)
@@ -61,7 +61,7 @@ class ObtainAuthTokenView(ObtainAuthToken):
         user = serializer.validated_data["user"]
 
         token, created = Token.objects.get_or_create(user=user)
-        print(token.key)
+
         return Response({"token": token.key, "user_id": user.pk, "email": user.email})
 
 

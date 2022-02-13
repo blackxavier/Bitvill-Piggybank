@@ -15,7 +15,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return f"User - {self.email}"
-
-
-# from django.contrib.auth import get_user_model
-# User = get_user_model()
