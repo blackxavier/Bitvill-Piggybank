@@ -2,7 +2,7 @@
 
 ## What this API is used for
 
-## Resources
+### Resources
 
 ## Authentication
 
