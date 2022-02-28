@@ -4,10 +4,10 @@
 
 ### Resources
 
-## Authentication
+### Authentication
 
-## Currencies
+### Currencies
 
-## Categories
+### Categories
 
-## Transactions
+### Transactions
