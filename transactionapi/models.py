@@ -35,7 +35,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
-        ordering = ("category_name",)
+        ordering = ("date_created",)
 
 
 class Transaction(models.Model):
