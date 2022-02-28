@@ -15,5 +15,5 @@ urlpatterns = [
     path("auth/login/", ObtainAuthTokenView.as_view(), name="login"),
     path("logout/", user_logout, name="logout"),
     path("change-password/", ChangePasswordView.as_view(), name="change-password"),
-    path("me/", UserProfileView, name="change-password"),
+    path("me/", UserProfileView, name="user-details"),
 ]
