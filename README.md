@@ -11,7 +11,7 @@ To accesss endpoints, a client has to register using the following details
 * confirm_password
 
 
-This parameters should be passed via a *POST* request to *api/auth/register/*
+This parameters should be passed via a *POST* request to `api/auth/register/`
 Upon successfull request a token would be recieved.
 
 To login use the following details
@@ -19,7 +19,7 @@ To login use the following details
 * password
 
 
-This parameters should be passed via a *POST* request to *api/auth/login/*
+This parameters should be passed via a *POST* request to `api/auth/login/`
 Upon successfull request a token would be recieved.
 
 
