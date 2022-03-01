@@ -21,12 +21,12 @@ urlpatterns = [
         name="category-update-delete-retrieve",
     ),
     path(
-        "me/categories/delete/",
+        "categories/delete/",
         views.DeleteAllCategories.as_view(),
         name="categories-delete-all",
     ),
     path(
-        "me/transactions/delete/",
+        "transactions/delete/",
         views.DeleteAllTransactions.as_view(),
         name="transaction-delete-all",
     ),
