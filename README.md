@@ -9,6 +9,8 @@ To accesss endpoints, a client has to register using the following details
 * email
 * password
 * confirm_password
+
+
 This parameters should be passed via a *POST* request to *api/auth/register/*
 Upon successfull request a token would be recieved.
 
