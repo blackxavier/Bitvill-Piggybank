@@ -12,10 +12,13 @@ from rest_framework.generics import (
 
 
 from transactionapi.models import Currency, Category, Transaction
+from transactionapi.reports import transaction_report
 from transactionapi.serializers import (
     ReadCurrencySerializer,
     ReadCategorySerializer,
     ReadTransactionSerializer,
+    ReportEntrySerializer,
+    ReportParamsSerializer,
     WriteCategorySerializer,
     WriteTransactionSerializer,
 )
@@ -146,3 +149,15 @@ class DeleteAllTransactions(APIView):
             transaction.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class TransactionReportAPIView(APIView):
+    def get(self, request):
+        params_serializer = ReportParamsSerializer(
+            data=request.GET, context={"request": request}
+        )
+        params_serializer.is_valid(raise_exception=True)
+        params = params_serializer.save()
+        data = transaction_report(params)
+        serializer = ReportEntrySerializer(instance=data, many=True)
+        return Response(data=serializer.data)

@@ -20,4 +20,19 @@ urlpatterns = [
         views.CategoryDetailApiView.as_view(),
         name="category-update-delete-retrieve",
     ),
+    path(
+        "me/categories/delete/",
+        views.DeleteAllCategories.as_view(),
+        name="categories-delete-all",
+    ),
+    path(
+        "me/categories/delete/",
+        views.DeleteAllTransactions.as_view(),
+        name="transaction-delete-all",
+    ),
+    path(
+        "reports/",
+        views.TransactionReportAPIView.as_view(),
+        name="reports",
+    ),
 ]

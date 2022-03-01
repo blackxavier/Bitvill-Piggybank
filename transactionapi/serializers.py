@@ -1,6 +1,7 @@
 from transactionapi.models import Currency, Category, Transaction
 from rest_framework import serializers
 from accounts.serializers import ReadUserProfileSerializer
+from transactionapi.reports import ReportParams
 
 
 class ReadCurrencySerializer(serializers.ModelSerializer):
@@ -78,3 +79,19 @@ class ReadTransactionSerializer(serializers.ModelSerializer):
             "date_modified",
         ]
         read_only = True
+
+
+class ReportEntrySerializer(serializers.Serializer):
+    category = ReadCategorySerializer()
+    total = serializers.DecimalField(max_digits=15, decimal_places=2)
+    count = serializers.IntegerField()
+    avg = serializers.DecimalField(max_digits=15, decimal_places=2)
+
+
+class ReportParamsSerializer(serializers.Serializer):
+    start_date = serializers.DateTimeField()
+    end_date = serializers.DateTimeField()
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    def create(self, validated_data):
+        return ReportParams(**validated_data)
