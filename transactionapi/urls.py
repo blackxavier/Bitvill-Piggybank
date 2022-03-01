@@ -26,7 +26,7 @@ urlpatterns = [
         name="categories-delete-all",
     ),
     path(
-        "me/categories/delete/",
+        "me/transactions/delete/",
         views.DeleteAllTransactions.as_view(),
         name="transaction-delete-all",
     ),
