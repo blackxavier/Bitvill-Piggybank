@@ -6,15 +6,15 @@ This API is used to store transactions which can be grouped into categories. It 
 
 ### Authentication
 To accesss endpoints, a client has to register using the following details
-*:email
-*:password
-*:confirm_password
+* email
+* password
+* confirm_password
 This parameters should be passed via a *POST* request to *api/auth/register/*
 Upon successfull request a token would be recieved.
 
 To login use the following details
-*:email
-*:password
+* email
+* password
 This parameters should be passed via a *POST* request to *api/auth/login/*
 Upon successfull request a token would be recieved.
 
