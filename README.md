@@ -17,6 +17,8 @@ Upon successfull request a token would be recieved.
 To login use the following details
 * email
 * password
+
+
 This parameters should be passed via a *POST* request to *api/auth/login/*
 Upon successfull request a token would be recieved.
 
