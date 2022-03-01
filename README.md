@@ -32,4 +32,13 @@ This API is used to store transactions which can be grouped into categories. It 
 
 ### Install
 
-    pip install -r requirements.txt
+    Clone repository - git clone https://github.com/blackxavier/Bitvill-Piggybank.git
+    Create a virtual environment - virtualenv env
+    Install requirements - pip install -r requirements.txt
+    Make migrations - py manage.py makemigrations
+    Migrate - py manage.py migrate
+    Create superuser - py manage.py createsuperuser
+    Launch server - py manage.py runserver 
+    Log in to admin
+
+
