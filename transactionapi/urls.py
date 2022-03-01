@@ -30,9 +30,4 @@ urlpatterns = [
         views.DeleteAllTransactions.as_view(),
         name="transaction-delete-all",
     ),
-    path(
-        "reports/",
-        views.TransactionReportAPIView.as_view(),
-        name="reports",
-    ),
 ]
