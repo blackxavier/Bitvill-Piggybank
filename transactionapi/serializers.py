@@ -54,7 +54,7 @@ class WriteTransactionSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
         """Class constructor. Check if the user sending the request created the category inputed"""
         super().__init__(*args, **kwargs)
-        user = self.context["request"].user
+        user = self.context["request"].user.id
         self.fields["category"].queryset = Category.objects.filter(user=user)
 
 

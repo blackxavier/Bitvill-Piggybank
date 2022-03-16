@@ -13,7 +13,7 @@ urlpatterns = [
     path(
         "categories/",
         views.CategoryListCreateApiView.as_view(),
-        name="ist-create-category",
+        name="list-create-category",
     ),
     path(
         "categories/<int:pk>/",
@@ -29,5 +29,10 @@ urlpatterns = [
         "transactions/delete/",
         views.DeleteAllTransactions.as_view(),
         name="transaction-delete-all",
+    ),
+    path(
+        "transactions/<int:pk>/",
+        views.TransactionRetrieveUpdateDeleteView.as_view(),
+        name="transaction-retrieve-update-delete",
     ),
 ]

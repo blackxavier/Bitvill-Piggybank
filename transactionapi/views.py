@@ -21,7 +21,10 @@ from transactionapi.serializers import (
     WriteTransactionSerializer,
 )
 
+
 # Currency resource view
+
+
 class CurrencyListApiView(ListAPIView):
     pagination_class = PageNumberPagination
     queryset = Currency.objects.all()
@@ -147,3 +150,22 @@ class DeleteAllTransactions(APIView):
             transaction.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class TransactionRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Transaction.objects.select_related(
+            "currency", "category", "user"
+        ).filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_serializer_class(self):
+        # uses a serializer based on request
+        if self.request == "GET":
+            return ReadTransactionSerializer
+        else:
+            return WriteTransactionSerializer

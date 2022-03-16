@@ -5,7 +5,7 @@ from accounts.views import (
     ObtainAuthTokenView,
     ChangePasswordView,
     user_logout,
-    user_logout,
+  
 )
 
 app_name = "accounts"
