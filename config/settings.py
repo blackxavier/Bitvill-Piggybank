@@ -73,7 +73,7 @@ TEMPLATES = [
             ],
             "libraries": {
                 "staticfiles": "django.templatetags.static",
-            },
+            },  # added because of error gotten from django-rest-framework
         },
     },
 ]
@@ -147,3 +147,13 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Auth Token e.g [Bearer (JWT)]": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+        }
+    }
+}
