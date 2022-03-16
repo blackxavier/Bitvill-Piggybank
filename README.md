@@ -21,20 +21,28 @@ This API is used to store transactions which can be grouped into categories. It 
 ### Category
 
 * categories/ - (view all categories)
-* categories/<int:id>/ - (view/edit/update/delete single category)
+* categories/id/ - (view/edit/update/delete single category)
 * me/categories/delete/ - (delete all categories)
 
 ### Transactions
 
 * transactions/  - (view all transactions)
-* transactions/<int:id>/  - (view/edit/update/delete single transaction)
+* transactions/id/  - (view/edit/update/delete single transaction)
 * me/transactions/delete/  - (delete all transactions)
 
 ### Install
 
+## Clone repository
+
     Clone repository - git clone https://github.com/blackxavier/Bitvill-Piggybank.git
+
+## Create virtual environment and install requirements 
+
     Create a virtual environment - virtualenv env
     Install requirements - pip install -r requirements.txt
+
+## Migrate and run server
+
     Make migrations - py manage.py makemigrations
     Migrate - py manage.py migrate
     Create superuser - py manage.py createsuperuser
