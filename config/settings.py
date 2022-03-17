@@ -1,11 +1,13 @@
 import environ
+from pathlib import Path
+import django_heroku
+
 
 env = environ.Env()
 env.read_env()
-import django_heroku
+
 django_heroku.settings(locals())
 
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +41,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -133,7 +134,6 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 1,
-   
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
