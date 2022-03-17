@@ -2,23 +2,18 @@ import environ
 from pathlib import Path
 import django_heroku
 
-
-env = environ.Env()
-env.read_env()
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env(Path(BASE_DIR, ".env"))
 
 
-SECREY_KEY = env("SECREY_KEY")
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+SECRET_KEY = env("SECRET_KEY")
+
+
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
 
-
-# Application definition
 
 INSTALLED_APPS = [
     "django.contrib.admin",
