@@ -8,7 +8,7 @@ environ.Env.read_env(Path(BASE_DIR, ".env"))
 
 
 SECRET_KEY = env("SECRET_KEY")
-
+# Unable to complete app deployment in heroku
 
 DEBUG = env("DEBUG")
 
