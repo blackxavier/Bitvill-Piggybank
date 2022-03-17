@@ -1,6 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 from accounts.views import (
-    registration_view,
+    RegistrationView,
     UserProfileView,
     ObtainAuthTokenView,
     ChangePasswordView,
@@ -11,7 +11,7 @@ from accounts.views import (
 app_name = "accounts"
 
 urlpatterns = [
-    path("auth/register/", registration_view, name="register"),
+    path("auth/register/", RegistrationView.as_view(), name="register"),
     path("auth/login/", ObtainAuthTokenView.as_view(), name="login"),
     path("logout/", user_logout, name="logout"),
     path("change-password/", ChangePasswordView.as_view(), name="change-password"),

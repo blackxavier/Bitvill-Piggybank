@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework import status
+from rest_framework import status, views
 from rest_framework.response import Response
 from django.contrib.auth import logout
 from rest_framework.decorators import api_view, permission_classes
@@ -16,38 +16,56 @@ from accounts.serializers import (
     RegistrationSerializer,
     ChangePasswordSerializer,
 )
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 User = get_user_model()
 
 
-@transaction.atomic
-@api_view(
-    [
-        "POST",
-    ]
-)
-def registration_view(request):
-    if request.method == "POST":
-        serializer = RegistrationSerializer(data=request.data)
-        if serializer.is_valid():
+class RegistrationView(views.APIView):
+    params_email = openapi.Parameter(
+        "email",
+        in_=openapi.IN_QUERY,
+        description="Email description",
+        type=openapi.TYPE_STRING,
+    )
 
-            account = serializer.save()
+    params_password = openapi.Parameter(
+        "password",
+        in_=openapi.IN_QUERY,
+        description="Password description",
+        type=openapi.TYPE_STRING,
+    )
+    params_confirm_password = openapi.Parameter(
+        "confirm_password",
+        in_=openapi.IN_QUERY,
+        description="Password description",
+        type=openapi.TYPE_STRING,
+    )
 
-            token = Token.objects.get(user=account)
-            data = {
-                "user": {
-                    "email": account.email,
-                },
-                "response": "Account was successfuly created",
-                "status": f"{status.HTTP_201_CREATED} CREATED",
-                "Key": {
-                    "token": token.key,
-                },
-            }
-            return Response(data)
-        else:
-            data = serializer.errors
-            return Response(data)
+    @swagger_auto_schema(
+        manual_parameters=[params_email, params_password, params_confirm_password]
+    )
+    def post(self, request):
+        if request.method == "POST":
+            serializer = RegistrationSerializer(data=request.data)
+            if serializer.is_valid():
+                account = serializer.save()
+                token = Token.objects.get(user=account)
+                data = {
+                    "user": {
+                        "email": account.email,
+                    },
+                    "response": "Account was successfuly created",
+                    "status": f"{status.HTTP_201_CREATED} CREATED",
+                    "Key": {
+                        "token": token.key,
+                    },
+                }
+                return Response(data)
+            else:
+                data = serializer.errors
+                return Response(data)
 
 
 class ObtainAuthTokenView(ObtainAuthToken):

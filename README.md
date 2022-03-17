@@ -48,5 +48,3 @@ This API is used to store transactions which can be grouped into categories. It 
     Create superuser - py manage.py createsuperuser
     Launch server - py manage.py runserver 
     Log in to admin
-
-
