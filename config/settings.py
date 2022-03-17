@@ -11,7 +11,7 @@ env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECREY_KEY = env("SECRET_KEY")
+SECREY_KEY = env("SECREY_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -152,4 +152,4 @@ STATICFILES_DIRS = [
 STATIC_ROOT = Path(BASE_DIR, "staticfiles")
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
