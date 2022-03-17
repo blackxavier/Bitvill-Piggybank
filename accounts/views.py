@@ -23,6 +23,7 @@ User = get_user_model()
 
 
 class RegistrationView(views.APIView):
+    # adding extra parameter for swagger documentation
     params_email = openapi.Parameter(
         "email",
         in_=openapi.IN_QUERY,
