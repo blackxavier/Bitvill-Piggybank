@@ -6,8 +6,6 @@ import django_heroku
 env = environ.Env()
 env.read_env()
 
-django_heroku.settings(locals())
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "accounts.apps.AccountsConfig",
     "rest_framework",
@@ -147,3 +146,10 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+STATICFILES_DIRS = [
+    Path(BASE_DIR, "static"),
+]
+STATIC_ROOT = Path(BASE_DIR, "staticfiles")
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+django_heroku.settings(locals())
