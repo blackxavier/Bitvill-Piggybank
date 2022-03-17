@@ -63,9 +63,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-            "libraries": {
-                "staticfiles": "django.templatetags.static",
-            },  # added because of error gotten from django-rest-framework
+            # added because of error gotten from django-rest-framework
         },
     },
 ]
