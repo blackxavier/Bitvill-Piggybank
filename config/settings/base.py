@@ -1,7 +1,9 @@
 import environ
-from pathlib import Path
-import django_heroku
 
+import django_heroku
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env(Path(BASE_DIR, ".env"))
@@ -12,7 +14,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["localhost", "bitvill-transactions.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost"]
 
 
 INSTALLED_APPS = [
@@ -58,7 +60,6 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-            # added because of error gotten from django-rest-framework
         },
     },
 ]
@@ -71,8 +72,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("db_name"),
+        "USER": env("db_user"),
+        "PASSWORD": env("db_password"),
+        "HOST": env("db_host"),
+        "PORT": env("db_port"),
     }
 }
 
@@ -130,7 +135,6 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 1,
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
